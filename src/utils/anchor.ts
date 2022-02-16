@@ -1,7 +1,10 @@
 /* eslint-disable unicorn/prefer-module */
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl, Connection, Keypair, PublicKey } from "@solana/web3.js";
-import { SBV2_MAINNET_PID } from "@switchboard-xyz/switchboard-v2";
+import {
+  SBV2_DEVNET_PID,
+  SBV2_MAINNET_PID,
+} from "@switchboard-xyz/switchboard-v2";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -24,7 +27,7 @@ const PROGRAM_IDL_PATH = path.join(
 export async function loadSwitchboardProgram(
   payer: Keypair
 ): Promise<anchor.Program> {
-  const connection = new Connection("https://switchboard.rpcpool.com/ec20ad2831092cfcef66d677539a", {
+  const connection = new Connection(clusterApiUrl("devnet"), {
     commitment: "confirmed",
   });
   const wallet = new anchor.Wallet(payer);
@@ -33,12 +36,12 @@ export async function loadSwitchboardProgram(
     preflightCommitment: "processed",
   });
 
-  const anchorIdl = await anchor.Program.fetchIdl(SBV2_MAINNET_PID, provider);
+  const anchorIdl = await anchor.Program.fetchIdl(SBV2_DEVNET_PID, provider);
   if (!anchorIdl) {
     throw new Error(`failed to read idl for ${SBV2_MAINNET_PID}`);
   }
 
-  return new anchor.Program(anchorIdl, SBV2_MAINNET_PID, provider);
+  return new anchor.Program(anchorIdl, SBV2_DEVNET_PID, provider);
 }
 
 export function loadVrfExamplePid(): PublicKey {
@@ -65,12 +68,9 @@ export function loadVrfExampleProgram(payer: Keypair): anchor.Program {
   const idl: anchor.Idl = JSON.parse(
     fs.readFileSync(PROGRAM_IDL_PATH, "utf-8")
   );
-  const connection = new Connection(
-    "https://switchboard.rpcpool.com/ec20ad2831092cfcef66d677539a",
-    {
-      commitment: "confirmed",
-    }
-  );
+  const connection = new Connection(clusterApiUrl("devnet"), {
+    commitment: "confirmed",
+  });
   const wallet = new anchor.Wallet(payer);
   const provider = new anchor.Provider(connection, wallet, {
     commitment: "confirmed",
