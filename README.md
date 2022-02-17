@@ -25,7 +25,7 @@ anchor build
 
 Then run `solana-keygen pubkey target/deploy/anchor_vrf_example-keypair.json` to get your program ID (PID). Be sure to update the declare_id macro in `programs/anchor-example/src/lib.rs` and `Anchor.toml`.
 
-also change `cluster = “mainnet”` to `cluster = “devnet”`
+also change `cluster = “mainnet”` to `cluster = “devnet”` in `Anchor.toml`.
 
 Then deploy anchor-example to devnet:
 
