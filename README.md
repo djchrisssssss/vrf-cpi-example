@@ -23,12 +23,14 @@ npm install
 anchor build
 ```
 
-Then run `solana-keygen pubkey target/deploy/anchor_vrf_example-keypair.json` to get your program ID (PID). Be sure to update the declare_id macro in `programs/anchor-example/src/lib.rs`.
+Then run `solana-keygen pubkey target/deploy/anchor_vrf_example-keypair.json` to get your program ID (PID). Be sure to update the declare_id macro in `programs/anchor-example/src/lib.rs` and `Anchor.toml`.
+
+also change `cluster = “mainnet”` to `cluster = “devnet”`
 
 Then deploy anchor-example to devnet:
 
 ```bash
-anchor deploy
+anchor deploy --provider.cluster Devnet
 ```
 
 ## Commands
@@ -41,6 +43,8 @@ anchor deploy
 - [Watch Account](#Watch-Account)
 
 **NOTE:** Each randomness request costs 0.1 wSOL. The following commands assume you use the same keypair, containing an active devnet Solana balance to pay for new accounts,
+
+Rename `secrets/payer-keypair.json` to `secrets/program-auth.json`,
 
 ```bash
 solana-keygen new --no-bip39-passphrase --outfile secrets/payer-keypair.json
