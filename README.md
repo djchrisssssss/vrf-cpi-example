@@ -98,7 +98,7 @@ OPTIONS
   --maxResult   the maximum result stored by the example program state (max: u64::max = 18446744073709551615)
 
 EXAMPLE
-  $ ts-node src request EY5zeq17vsMo8Zg1odbEqG6x4j4nrQo5jQ5b7twB2YoH --payer secrets/payer-keypair.json
+  $ ts-node src create EY5zeq17vsMo8Zg1odbEqG6x4j4nrQo5jQ5b7twB2YoH --payer secrets/payer-keypair.json
 ```
 
 [src/actions/create.ts](./src/actions/create.ts)
