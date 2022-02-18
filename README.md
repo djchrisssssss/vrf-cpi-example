@@ -22,14 +22,9 @@ cd vrf-cpi-example
 npm install
 anchor build
 ```
+![](https://i.imgur.com/vQnR49J.png)
 
-Then run 
-`solana-keygen pubkey target/deploy/anchor_vrf_example-keypair.json` 
-or
-`anchor keys list`
-to get your program ID (PID). Be sure to update the declare_id macro in `programs/anchor-example/src/lib.rs` and `Anchor.toml`.
-
-also change `cluster = “mainnet”` to `cluster = “devnet”` in `Anchor.toml`.
+Then run `anchor keys list` to get your program ID (PID). Be sure to update the declare_id macro in `programs/anchor-example/src/lib.rs`.
 
 Then deploy anchor-example to devnet:
 
