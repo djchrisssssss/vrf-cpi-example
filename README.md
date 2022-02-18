@@ -22,8 +22,6 @@ cd vrf-cpi-example
 npm install
 anchor build
 ```
-![](https://i.imgur.com/vQnR49J.png)
-
 Then run `anchor keys list` to get your program ID (PID). Be sure to update the declare_id macro in `programs/anchor-example/src/lib.rs`.
 
 Then deploy anchor-example to devnet:
